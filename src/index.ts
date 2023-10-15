@@ -6,6 +6,7 @@ import { easyResponse } from "./middleware/easyResponse.middleware";
 const Port = 7000;
 const app = express();
 
+app.use(easyResponse);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -18,7 +19,6 @@ app.use((req, res, next) => {
 
   next();
 });
-app.use(easyResponse);
 app.use("/", registeredRoute);
 app.listen(Port, () => {
   console.log(`Server Running on ${Port}`);

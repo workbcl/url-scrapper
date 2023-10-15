@@ -4,13 +4,12 @@ export const scrapperRoute = express.Router();
 
 const urlScrapper = UrlScrapper.getInstance();
 
-scrapperRoute.post("/urls", async (req, res) => {
+scrapperRoute.post("/urls", async (req: any, res: any) => {
   try {
     const url = req.body.url;
-
     let urlList = await urlScrapper.getUrls(url);
-    res.status(200).send({ urls: urlList });
+    res.ok({ urls: urlList });
   } catch (error) {
-    res.status(500).send(error);
+    res.badRequest(error);
   }
 });
