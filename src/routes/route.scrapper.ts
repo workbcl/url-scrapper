@@ -9,12 +9,8 @@ scrapperRoute.post("/urls", async (req, res) => {
     const url = req.body.url;
 
     let urlList = await urlScrapper.getUrls(url);
-    res.send({ urls: urlList });
+    res.status(200).send({ urls: urlList });
   } catch (error) {
-    console.log(
-      "🚀 ~ file: route.scrapper.ts:16 ~ scrapperRoute.post ~ error:",
-      error
-    );
     res.status(500).send(error);
   }
 });
